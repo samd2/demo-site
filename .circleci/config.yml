@@ -14,14 +14,15 @@ jobs:
     executor: python
     steps:
       - checkout
-      - echo "Running pwd" && pwd
-      - echo "Running ls" && ls -al
+      - run: echo "Running pwd" && pwd
+      - run: echo "Running ls" && ls -al
       - run: pip install ansible ansible-lint yamllint flake8
       - run: mkdir -p .cache/roles && ln -s ../.. .cache/roles/${CIRCLE_PROJECT_REPONAME}
-      - echo "Running ls again" && ls -al .cache/roles
+      - run: echo "Running ls again" && ls -al .cache/roles
       - run: ansible-lint
       - run: yamllint .
       - run: flake8
+
   build:
     executor: golang
     steps:
@@ -123,6 +124,7 @@ workflows:
   version: 2
   commit:
     jobs:
+    - lint
     - build
     - mixins
     - test
@@ -136,6 +138,7 @@ workflows:
 
     - deploy:
         requires:
+        - lint
         - build
         - test
         - mixins
@@ -152,6 +155,7 @@ workflows:
             only:
             - master
     jobs:
+    - lint
     - build
     - mixins
     - test
