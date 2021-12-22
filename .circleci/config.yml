@@ -10,6 +10,18 @@ executors:
     - image: circleci/golang:1.16
 
 jobs:
+  lint:
+    executor: python
+    steps:
+      - checkout
+      - echo "Running pwd" && pwd
+      - echo "Running ls" && ls -al
+      - run: pip install ansible ansible-lint yamllint flake8
+      - run: mkdir -p .cache/roles && ln -s ../.. .cache/roles/${CIRCLE_PROJECT_REPONAME}
+      - echo "Running ls again" && ls -al .cache/roles
+      - run: ansible-lint
+      - run: yamllint .
+      - run: flake8
   build:
     executor: golang
     steps:
