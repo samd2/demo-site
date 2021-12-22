@@ -14,11 +14,9 @@ jobs:
     executor: python
     steps:
       - checkout
-      - run: echo "Running pwd" && pwd
-      - run: echo "Running ls" && ls -al
+      - run: ansible-galaxy install -r roles/requirements.yml
       - run: pip install ansible ansible-lint yamllint flake8
       - run: mkdir -p .cache/roles && ln -s ../.. .cache/roles/${CIRCLE_PROJECT_REPONAME}
-      - run: echo "Running ls again" && ls -al .cache/roles
       - run: ansible-lint
       - run: yamllint .
       - run: flake8

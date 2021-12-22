@@ -1,8 +1,8 @@
 ---
 extends: default
 
-# ignore: |
-#  roles/
+ignore: |
+ roles/
 
 rules:
   braces:
