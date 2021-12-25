@@ -17,3 +17,8 @@
       path: "/run/sshd"
       state: directory
       mode: 0755
+  - name: set facts
+    set_fact:
+      ansible_python_interpreter: /usr/bin/python3
+      grafana_security: {'admin_user': 'admin', admin_password: 'secret'}
+
