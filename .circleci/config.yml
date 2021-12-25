@@ -89,20 +89,20 @@ jobs:
     - run: sudo mkdir -p /run/sshd
     - setup_remote_docker
     # Run tests.
-    - molecule --debug dependency
-    - molecule --debug lint
-    - molecule --debug cleanup
-    - molecule --debug destroy
-    - molecule --debug syntax
-    - molecule --debug create
-    - molecule --debug prepare
-    - molecule --debug converge
-    - molecule --debug idempotence
-    # molecule side_effect does not exist
-    # - molecule --debug side_effect
-    - molecule --debug verify
-    - molecule --debug cleanup
-    - molecule --debug destroy
+    - run: molecule --debug dependency
+    - run: molecule --debug lint
+    - run: molecule --debug cleanup
+    - run: molecule --debug destroy
+    - run: molecule --debug syntax
+    - run: molecule --debug create
+    - run: molecule --debug prepare
+    - run: molecule --debug converge
+    - run: molecule --debug idempotence
+    # run: molecule side_effect does not exist
+    # run: molecule --debug side_effect
+    - run: molecule --debug verify
+    - run: molecule --debug cleanup
+    - run: molecule --debug destroy
 
     # - run: |
     #    ansible-playbook -i hosts.test -e "{'grafana_security': {'admin_user': 'admin', admin_password: 'secret' }}" site.yml
