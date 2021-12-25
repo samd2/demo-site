@@ -71,6 +71,8 @@ provisioner:
     prepare: prepare.yml
     converge: converge.yml
   inventory:
+    links:
+      group_vars: ../../group_vars/
     group_vars:
       python3:
         ansible_python_interpreter: /usr/bin/python3
