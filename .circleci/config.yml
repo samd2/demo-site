@@ -87,8 +87,9 @@ jobs:
     - run: rm group_vars/grafana/vault
     - run: sudo apt-get update && sudo apt-get install -y openssh-server python3-apt
     - run: sudo mkdir -p /run/sshd
-    - run: |
-        ansible-playbook -i hosts.test -e "{'grafana_security': {'admin_user': 'admin', admin_password: 'secret' }}" site.yml
+    - run: molecule test -s default --destroy always
+    # - run: |
+    #    ansible-playbook -i hosts.test -e "{'grafana_security': {'admin_user': 'admin', admin_password: 'secret' }}" site.yml
 
   deploy:
     executor: python
