@@ -9,6 +9,7 @@
 
 - name: Apply security restrictions
   hosts: all
+  become: true
   roles:
   - dev-sec.ssh-hardening
   - dev-sec.os-hardening
