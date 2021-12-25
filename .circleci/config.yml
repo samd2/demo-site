@@ -85,8 +85,8 @@ jobs:
     - run: ansible-galaxy install -f -r roles/requirements.yml
     # Remove encrypted file so ansible won't try to decrypt it
     - run: rm group_vars/grafana/vault
-    - run: sudo apt-get update && sudo apt-get install -y openssh-server openssh-client python3-apt
-    - run: sudo mkdir -p /run/sshd
+    # - run: sudo apt-get update && sudo apt-get install -y openssh-server openssh-client python3-apt
+    # - run: sudo mkdir -p /run/sshd
     - setup_remote_docker
     # Run tests.
     - run: molecule --debug dependency
