@@ -30,6 +30,7 @@
 
 - name: Configure automatic updates
   hosts: all
+  become: true
   roles:
   - jnv.unattended-upgrades
   vars:
