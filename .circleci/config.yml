@@ -85,6 +85,7 @@ jobs:
     - run: ansible-galaxy install -f -r roles/requirements.yml
     # Remove encrypted file so ansible won't try to decrypt it
     - run: rm group_vars/grafana/vault
+    - run: apt-get update && apt-get install -y openssh-server
     - run: |
         ansible-playbook --check -i hosts.test -e "{'grafana_security': {'admin_user': 'admin', admin_password: 'secret' }}" site.yml
 
