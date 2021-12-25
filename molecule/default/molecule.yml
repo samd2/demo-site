@@ -72,6 +72,7 @@ provisioner:
     converge: converge.yml
   inventory:
     links:
+      hosts: ../../hosts.test
       group_vars: ../../group_vars/
 verifier:
   name: testinfra
