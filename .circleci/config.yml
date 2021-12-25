@@ -86,7 +86,7 @@ jobs:
     # Remove encrypted file so ansible won't try to decrypt it
     - run: rm group_vars/grafana/vault
     - run: |
-        ansible-playbook --check -e "{'grafana_security': {'admin_user': 'admin', admin_password: 'secret' }}" site.yml
+        ansible-playbook --check -i hosts.test -e "{'grafana_security': {'admin_user': 'admin', admin_password: 'secret' }}" site.yml
 
   deploy:
     executor: python
