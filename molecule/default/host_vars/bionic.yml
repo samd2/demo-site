@@ -1,5 +1,7 @@
 ---
 
+grafana_security: {'admin_user': 'admin', admin_password: 'secret'}
+
 random_exporter_addresses:
 - "{{ ansible_host | default(inventory_hostname) }}:8999"
 - "{{ ansible_host | default(inventory_hostname) }}:8998"
