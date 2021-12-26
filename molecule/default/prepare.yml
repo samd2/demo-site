@@ -3,13 +3,13 @@
   hosts: all
   become: true
   gather_facts: false
-  tasks: 
+  tasks:
   - name: install packages
     package:
       name: "{{ item }}"
       state: present
       update_cache: true
-    with_items: 
+    with_items:
       - openssh-server
       - openssh-client
   - name: Create dir
@@ -17,11 +17,3 @@
       path: "/run/sshd"
       state: directory
       mode: 0755
-  - name: set facts
-    set_fact:
-      ansible_python_interpreter: /usr/bin/python3
-      grafana_security: {'admin_user': 'admin', admin_password: 'secret'}
-      ansible_host: localhost
-  - name: debugger
-    ansible.builtin.debug:
-      var: hostvars

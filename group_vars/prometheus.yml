@@ -52,16 +52,14 @@ prometheus_alert_rules:
       {% endraw -%}
     summary: Node CPU Utilization is high
 
-# hostnamelookupkey could be set host_vars to 'inventory_hostname', or even hardcoded here as 'inventory_hostname'.
-# The reason 'ansible_host' is used here is because the demo-site's inventory uses the ansible_host variable.
-# However, not all ansible implementations will do so.
-
-hostnamelookupkey: "{{ hostnamelookupkey | default('ansible_host') }}"
+# The following variable should be set to 'inventory_hostname' (in group_vars, host_vars, or elsewhere)
+# if you haven't specified 'ansible_host' in the inventory.
+prometheus_hostnamelookupkey: "{{ prometheus_hostnamelookupkey | default('ansible_host') }}"
 
 prometheus_targets:
   node:
   - targets:
-      "{{ groups['all'] | map('extract', hostvars, [hostnamelookupkey]) | map('regex_replace', '$', ':9100') | list }}"
+      "{{ groups['all'] | map('extract', hostvars, [prometheus_hostnamelookupkey]) | map('regex_replace', '$', ':9100') | list }}"
     labels:
       env: demo
   alertmanager:
