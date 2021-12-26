@@ -32,8 +32,5 @@ provisioner:
   inventory:
     links:
       group_vars: ../../group_vars/
-    host_vars:
-      bionic:
-        ansible_host: localhost
 verifier:
   name: testinfra
