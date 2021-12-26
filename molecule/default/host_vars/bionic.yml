@@ -1,25 +1,21 @@
 ---
 
+hostnamelookupkey: 'inventory_hostname'
+
 grafana_security: {'admin_user': 'admin', admin_password: 'secret'}
 
-random_exporter_addresses:
-- "{{ ansible_host | default(inventory_hostname) }}:8999"
-- "{{ ansible_host | default(inventory_hostname) }}:8998"
-- "{{ ansible_host | default(inventory_hostname) }}:8997"
-- "{{ ansible_host | default(inventory_hostname) }}:8996"
-
-prometheus_targets:
-  node:
-  - targets:
-      "{{ groups['all'] | map('extract', hostvars, ['inventory_hostname']) | map('regex_replace', '$', ':9100') | list }}"
-    labels:
-      env: demo
-  alertmanager:
-  - targets:
-    - "{{ ansible_host | default(inventory_hostname) }}:9093"
-    labels:
-      env: demo
-  random:
-  - targets: "{{ random_exporter_addresses }}"
-
-
+# prometheus_targets:
+#   node:
+#   - targets:
+#       "{{ groups['all'] | map('extract', hostvars, ['inventory_hostname']) | map('regex_replace', '$', ':9100') | list }}"
+#     labels:
+#       env: demo
+#   alertmanager:
+#   - targets:
+#     - "{{ ansible_host | default(inventory_hostname) }}:9093"
+#     labels:
+#       env: demo
+#   random:
+#   - targets: "{{ random_exporter_addresses }}"
+# 
+# 

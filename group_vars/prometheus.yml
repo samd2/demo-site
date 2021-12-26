@@ -1,11 +1,11 @@
 ---
 random_exporter_addresses:
-- "{{ ansible_host }}:8999"
-- "{{ ansible_host }}:8998"
-- "{{ ansible_host }}:8997"
-- "{{ ansible_host }}:8996"
+- "{{ ansible_host | default(inventory_hostname) }}:8999"
+- "{{ ansible_host | default(inventory_hostname) }}:8998"
+- "{{ ansible_host | default(inventory_hostname) }}:8997"
+- "{{ ansible_host | default(inventory_hostname) }}:8996"
 
-prometheus_web_external_url: "http://{{ ansible_host }}:9090"
+prometheus_web_external_url: "http://{{ ansible_host | default(inventory_hostname)  }}:9090"
 prometheus_storage_retention: "31d"
 
 prometheus_config_flags_extra:
@@ -17,7 +17,7 @@ prometheus_alertmanager_config:
 - scheme: http
   static_configs:
   - targets:
-    - "{{ ansible_host }}:9093"
+    - "{{ ansible_host | default(inventory_hostname) }}:9093"
 
 prometheus_alert_rules_files:
 - rules/*.rules
@@ -52,15 +52,21 @@ prometheus_alert_rules:
       {% endraw -%}
     summary: Node CPU Utilization is high
 
+# hostnamelookupkey could be set host_vars to 'inventory_hostname', or even hardcoded here as 'inventory_hostname'.
+# The reason 'ansible_host' is used here is because the demo-site's inventory uses the ansible_host variable.
+# However, not all ansible implementations will do so.
+
+hostnamelookupkey: "{{ hostnamelookupkey | default('ansible_host') }}"
+
 prometheus_targets:
   node:
   - targets:
-      "{{ groups['all'] | map('extract', hostvars, ['ansible_host']) | map('regex_replace', '$', ':9100') | list }}"
+      "{{ groups['all'] | map('extract', hostvars, [hostnamelookupkey]) | map('regex_replace', '$', ':9100') | list }}"
     labels:
       env: demo
   alertmanager:
   - targets:
-    - "{{ ansible_host }}:9093"
+    - "{{ ansible_host | default(inventory_hostname) }}:9093"
     labels:
       env: demo
   random:
@@ -71,7 +77,7 @@ prometheus_scrape_configs:
   metrics_path: "/metrics"
   static_configs:
   - targets:
-    - "{{ ansible_host }}:9090"
+    - "{{ ansible_host | default(inventory_hostname) }}:9090"
 - job_name: "random"
   metrics_path: "/metrics"
   file_sd_configs:
@@ -85,7 +91,7 @@ prometheus_scrape_configs:
 - job_name: "grafana"
   static_configs:
   - targets:
-    - "{{ ansible_host }}:3000"
+    - "{{ ansible_host | default(inventory_hostname) }}:3000"
 - job_name: "node"
   file_sd_configs:
   - files:
