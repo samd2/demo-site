@@ -15,6 +15,11 @@ platforms:
     docker_host: "${DOCKER_HOST:-unix://var/run/docker.sock}"
     groups:
       - python3
+      - prometheus
+      - alertmanager
+      - grafana
+      - exporters
+      - web
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
       - /var/lib/docker
