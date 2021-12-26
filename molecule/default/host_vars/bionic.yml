@@ -7,7 +7,7 @@ prometheus_targets:
       env: demo
   alertmanager:
   - targets:
-    - "{{ ansible_host }}:9093"
+    - "{{ ansible_host | default(inventory_hostname) }}:9093"
     labels:
       env: demo
   random:
