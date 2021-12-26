@@ -21,4 +21,7 @@
     set_fact:
       ansible_python_interpreter: /usr/bin/python3
       grafana_security: {'admin_user': 'admin', admin_password: 'secret'}
-
+  - name: debugger
+    ansible.builtin.debug:
+      var: hostvars
+      verbosity: 2
