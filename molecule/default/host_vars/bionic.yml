@@ -1,3 +1,10 @@
+---
+
+random_exporter_addresses:
+- "{{ ansible_host | default(inventory_hostname) }}:8999"
+- "{{ ansible_host | default(inventory_hostname) }}:8998"
+- "{{ ansible_host | default(inventory_hostname) }}:8997"
+- "{{ ansible_host | default(inventory_hostname) }}:8996"
 
 prometheus_targets:
   node:
