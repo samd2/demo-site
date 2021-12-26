@@ -24,4 +24,3 @@
   - name: debugger
     ansible.builtin.debug:
       var: hostvars
-      verbosity: 2
