@@ -7,6 +7,11 @@
   - name: Install python
     raw: "sleep 10 && apt-get update && apt-get install -y python3"
     changed_when: false
+  - name: debugger
+    ansible.builtin.debug:
+      var: hostvars
+      verbosity: 2
+
 
 - name: Apply security restrictions
   hosts: all
