@@ -106,7 +106,8 @@ jobs:
     - checkout
     - add_ssh_keys:
         fingerprints:
-        - "46:a1:bb:55:6e:cd:3a:a5:2f:ea:13:46:ae:24:f0:19"
+        # - "46:a1:bb:55:6e:cd:3a:a5:2f:ea:13:46:ae:24:f0:19"
+        - "eb:23:85:c7:ef:f8:89:bb:a9:d7:38:28:e4:1c:d5:b7"
     - attach_workspace:
         at: .
     - run: cp -v go/bin/random playbooks/files/random

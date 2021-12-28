@@ -3,6 +3,8 @@
 - name: cloudalchemy.snmp-exporter
 - name: cloudalchemy.blackbox-exporter
 - name: cloudalchemy.prometheus
+  src: https://github.com/samd2/ansible-prometheus
+  version: master
 - name: cloudalchemy.alertmanager
 - name: cloudalchemy.grafana
 
