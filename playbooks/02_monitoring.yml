@@ -70,6 +70,7 @@
 
 - name: Add node textfile examples
   hosts: all
+  become: true
   tasks:
   - name: Node CPU threshold
     template:
