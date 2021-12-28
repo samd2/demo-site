@@ -1,0 +1,3 @@
+
+# the "all" group is at lower precedence than a specific group.
+prometheus_hostnamelookupkey: "ansible_host"
