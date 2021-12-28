@@ -54,7 +54,7 @@ prometheus_alert_rules:
 
 # The following variable should be set to 'inventory_hostname' (in group_vars, host_vars, or elsewhere)
 # if you haven't specified 'ansible_host' in the inventory.
-prometheus_hostnamelookupkey: "{{ prometheus_hostnamelookupkey | default('ansible_host') }}"
+# prometheus_hostnamelookupkey: "{{ prometheus_hostnamelookupkey | default('ansible_host') }}"
 
 prometheus_targets:
   node:
