@@ -70,7 +70,7 @@ jobs:
           keys:
             - deps-{{ checksum "requirements.txt" }}
       - run: mkdir -p ~/.cache/pip
-      - run: pip install --cache-dir ~/.cache/pip -q -r requirements.txt
+      - run: pip install --cache-dir ~/.cache/pip -r requirements.txt
       - save_cache:
           key: deps-{{ checksum "requirements.txt" }}
           paths:
@@ -90,7 +90,7 @@ jobs:
           at: .
       - run: cp -v go/bin/random playbooks/files/random
       - run: cp -rv rules dashboards playbooks/files/
-      - run: pip install --cache-dir ~/.cache/pip -q -r molecule/test-requirements.txt
+      - run: pip install --cache-dir ~/.cache/pip -r molecule/test-requirements.txt
       - run: ansible-galaxy install -f -r roles/requirements.yml
       # Remove encrypted file so ansible won't try to decrypt it
       - run: rm group_vars/grafana/vault
@@ -123,7 +123,7 @@ jobs:
       - restore_cache:
           keys:
             - deps-{{ checksum "requirements.txt" }}
-      - run: pip install --cache-dir ~/.cache/pip -q -r requirements.txt
+      - run: pip install --cache-dir ~/.cache/pip -r requirements.txt
       - deploy:
           name: Deploy to production
           command: ./deploy.sh
