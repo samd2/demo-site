@@ -3,7 +3,7 @@ ansible>=5.1.0
 jmespath
 git-lfs
 ansible-lint
-molecule==3.3.4
+molecule==3.5.1
 molecule-docker
 docker
 ansible-lint>=3.4.0
