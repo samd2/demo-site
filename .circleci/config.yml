@@ -154,14 +154,14 @@ workflows:
             branches:
               only: master
 
-  nightly:
-    triggers:
-      - schedule:
-          cron: "0 14 * * *"
-          filters:
-            branches:
-              only:
-                - master
+#   nightly:
+#     triggers:
+#       - schedule:
+#           cron: "0 14 * * *"
+#           filters:
+#             branches:
+#               only:
+#                 - master
     jobs:
       - lint
       - build
